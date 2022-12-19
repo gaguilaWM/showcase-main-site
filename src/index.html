@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Creative Showcase</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+      <link rel="stylesheet" href="main.css" />
+  </head>
+    <!-- Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-9YXR888YD6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9YXR888YD6');
+</script> -->
+  <body class="bg-darkGrey">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div id="app">
+
+      
+      <header class="bg-wbdBlue shadow-lg">
+
+        <!-- navbar-->
+        <nav class="p-10 flex flex-col">
+          <div>
+            <div class="flex justify-between items-center">
+
+              <!-- logo -->
+              <div class="flex items-center shrink-0">
+                <img src="img/wbd-logo.svg" class="pr-6" />
+                <span class="sm:text-sm md:text-xl font-semibold  text-white ">RE/FORM Creative Showcase</span>
+              </div>
+              
+              <!-- Search Box -->
+              <div v-cloak class="hidden xxl:inline xxl:w-full xxxl:max-w-[50%] px-10">
+                <form id="searchBox" class="" >
+                  <label class="relative block">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <svg class="h-5 w-5 fill-black" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
+                              height="30" viewBox="0 0 30 30">
+                              <path
+                                  d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                              </path>
+                          </svg>
+                      </span>
+                      <input type="text"
+                          class="w-full tx-xs bg-white placeholder:font-italic border border-slate-300 rounded-full py-2 pl-10 pr-4 focus:outline-none"
+                          placeholder="Search by Campaign, Advertiser, Product, or Vertical" v-model="search" />
+                  </label>
+                  <!-- <span class="tooltiptext">Tooltip text</span> -->
+              </form>
+              </div>
+            
+              <!-- primary nav -->
+              <div class="hidden xl:flex rounded-md">
+                <button type="button" @click="setFilter('ALL')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">All</button>
+                <button type="button" @click="setFilter('Audio')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Audio</button>
+                <button type="button" @click="setFilter('Content')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Content</button>
+                <button type="button" @click="setFilter('Custom')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Custom</button>
+                <button type="button" @click="setFilter('Gallery')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Gallery</button>
+                <button type="button" @click="setFilter('Impact')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Impact</button>
+                <button type="button" @click="setFilter('Play')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Play</button>
+                <button type="button" @click="setFilter('Spotlight')" class="py-2 px-3 text-md text-white font-semibold transition duration-500 hover:bg-blue-600">Spotlight</button>
+              </div>
+
+              <!-- mobile button goes here -->
+              <div class="xl:hidden flex items-center">
+                <button @click="toggleMenu" class="mobile-menu-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white">
+                    <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                  </svg>
+                  
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- mobile menu -->
+          <div class="hidden flex flex-col mobile-menu p-5">
+            <!-- <div class=" border-t border-grey-100 inline-block"></div> -->
+            <button type="button" @click="setFilter('ALL')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black ">All</button>
+            <button type="button" @click="setFilter('Audio')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Audio</button>
+            <button type="button" @click="setFilter('Content')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Content</button>
+            <button type="button" @click="setFilter('Custom')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Custom</button>
+            <button type="button" @click="setFilter('Gallery')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Gallery</button>
+            <button type="button" @click="setFilter('Impact')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Impact</button>
+            <button type="button" @click="setFilter('Play')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Play</button>
+            <button type="button" @click="setFilter('Spotlight')" class="block py-2 px-4 text-white font-semibold hover:bg-yellow-500 hover:text-black">Spotlight</button>
+          </div>
+        </nav>
+      </header>
+      
+      <!-- <main class="bg-darkGreen mx-auto">
+        <div>
+          <div class="mx-auto flex flex-wrap justify-center md:flex-row   ">
+            <div id="cardContainer" class="px-3 py-3 w-[440px]" v-for="item in filteredSearchItems" v-if="currentFilter === item.Product || currentFilter === 'ALL' && item.Display !== 'no'">
+              <div class=" rounded overflow-hidden stroke-black-400 bg-white tileBorder">
+                <a :href="item.DesktopLink" target="_blank"> <img class=" w-full h-64" :src="item.Screenshot" :alt="item.Title" /></a>
+                <div class="border-t-[1px] border-color-red grid grid-cols-4 px-6 pt-4">
+                  <div class="col-span-3 font-bold text-xl mb-2">{{item.Campaign}}</div>
+
+                  <div class="col-span-1 ml-auto justify-content-end">
+                    <a class="px-0 text-blue-700 my-0 pr-0" :href="item.DesktopLink" target="_blank"><i class="fa-solid fa-desktop pr-2"></i></a>
+                    <a class="text-blue-700 my-0" :href="item.MobileLink" target="_blank"><i class="fa-solid fa-mobile-screen pr-2"></i></a>
+                  </div>
+                  <div class="col-span-4">
+                    <span class="py-0 text-gray-600 text-xs">{{ item.Advertiser }}</span>
+                  </div>
+              </div>
+                <br />
+
+                <div class="grid grid-cols-4 px-6 py-4">
+                  <div class="col-span-4">
+                    <span class="inline-block bg-purple-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2" >#{{item.Product}}</span>
+                    <span class="inline-block  bg-pink-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2" >{{item.Size}}</span>
+                    <span class="inline-block bg-blue-200 px-3 py-1 text-sm text-gray-700 mr-2" >{{item.Vertical}}</span>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main> -->
+    </div>
+    <script src="app.js" async defer></script>
+  </body>
+</html>

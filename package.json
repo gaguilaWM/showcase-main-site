@@ -1,0 +1,16 @@
+{
+  "name": "gallery",
+  "version": "1.0.0",
+  "description": "re/form creative showcase",
+  "main": "app.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/styles.css -o public/styles.css",
+    "build": "tailwindcss -i ./src/input.css -o ./src/main.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./src/main.css --watch"
+  },
+  "author": "George Aguila",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  }
+}
