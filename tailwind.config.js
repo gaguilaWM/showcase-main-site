@@ -14,7 +14,8 @@ module.exports = {
     extend: {
       colors: {
         wbdBlue: '#0022AF',
-        darkGrey: '#333333'
+        darkGrey: '#333333',
+        wbdGold: '#ffc200'
       },
     },
   },

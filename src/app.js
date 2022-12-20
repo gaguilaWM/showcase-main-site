@@ -22,6 +22,7 @@ const app = new Vue({
     // this.fetchMeta();
     this.fetchItems();
   },
+
   computed: {
     // console: () => console,
     // window: () => window,
@@ -39,7 +40,14 @@ const app = new Vue({
       });
     }
   },
+  mounted() {
+    this.focusInput();
+  },
   methods: {
+    focusInput: function (){
+      this.$refs.search.focus();
+      
+    },
     toggleMenu: function (){
       document.querySelector('.mobile-menu').classList.toggle("hidden");
     },

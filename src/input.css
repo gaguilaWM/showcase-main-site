@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sNav{
+  box-shadow: inset 0 0 0 0 #2563eb;
+  /* color: #54b3d6; */
+  /* margin: 0 -.25rem;
+  padding: 0 .25rem; */
+  transition: color .5s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.sNav:hover{
+  box-shadow: inset 550px 0 0 0 #2563eb;
+  color: white;
+}
